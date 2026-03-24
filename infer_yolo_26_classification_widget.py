@@ -1,9 +1,11 @@
+from PyQt6.QtWidgets import *
+
+from torch.cuda import is_available
+
 from ikomia import core, dataprocess
 from ikomia.utils import pyqtutils, qtconversion
-from infer_yolo_26_classification.infer_yolo_26_classification_process import InferYolo26ClassificationParam
 
-from PyQt5.QtWidgets import *
-from torch.cuda import is_available
+from infer_yolo_26_classification.infer_yolo_26_classification_process import InferYolo26ClassificationParam
 
 
 class InferYolo26ClassificationWidget(core.CWorkflowTaskWidget):
@@ -17,8 +19,7 @@ class InferYolo26ClassificationWidget(core.CWorkflowTaskWidget):
 
         self.grid_layout = QGridLayout()
 
-        self.check_cuda = pyqtutils.append_check(
-            self.grid_layout, "Cuda", self.parameters.cuda and is_available())
+        self.check_cuda = pyqtutils.append_check(self.grid_layout, "Cuda", self.parameters.cuda and is_available())
         self.check_cuda.setEnabled(is_available())
 
         self.combo_model = pyqtutils.append_combo(self.grid_layout, "Model name")
@@ -39,7 +40,7 @@ class InferYolo26ClassificationWidget(core.CWorkflowTaskWidget):
         self.browse_weight_file = pyqtutils.BrowseFileWidget(
             path=self.parameters.model_weight_file,
             tooltip="Select file",
-            mode=QFileDialog.ExistingFile
+            mode=QFileDialog.FileMode.ExistingFile
         )
         row = self.grid_layout.rowCount()
         self.grid_layout.addWidget(self.label_hyp, row, 0)
