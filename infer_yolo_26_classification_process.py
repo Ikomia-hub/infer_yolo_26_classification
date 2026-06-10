@@ -138,7 +138,7 @@ class InferYolo26ClassificationFactory(dataprocess.CTaskFactory):
         self.info.name = "infer_yolo_26_classification"
         self.info.short_description = "Inference with YOLO26 image classification models"
         self.info.path = "Plugins/Python/Classification"
-        self.info.version = "1.0.0"
+        self.info.version = "1.1.0"
         self.info.min_ikomia_version = "0.16.0"
         self.info.icon_path = "images/icon.png"
         self.info.authors = "Jocher, G., Chaurasia, A., & Qiu, J"
